@@ -8,4 +8,4 @@
     - if @collections.any?
       %aside
         - @collections.each do |collection|
-          = render partial: 'shared/article/aside-block', locals: { title: collection.name, collection: collection, graph_id: @article.graph_id }
+          = render partial: 'shared/article/aside_block', locals: { title: collection.name, collection: collection, graph_id: @article.graph_id }

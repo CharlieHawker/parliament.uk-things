@@ -7,4 +7,4 @@
 
     - if collection.articles.any? || collection.subcollections.any?
       %aside
-        = render partial: 'shared/article/aside-block', locals: { title: collection.name, collection: collection, graph_id: collection.graph_id }
+        = render partial: 'shared/article/aside_block', locals: { title: collection.name, collection: collection, graph_id: collection.graph_id }

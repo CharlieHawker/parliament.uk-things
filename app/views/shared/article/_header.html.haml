@@ -3,7 +3,9 @@
 
   -# All the collections an Article sits in
   - if local_assigns[:collections] && collections.any?
-    %p= render partial: 'shared/delimited_links', locals: { links: collections, prefix: t('.in') }
+    %p
+      %span.typography--heavy= t('.in')
+      = render partial: 'shared/article/delimited_collection_links', locals: { links: collections }
 
   - if local_assigns[:summary]
     = MarkdownHelper.markdown(summary)
