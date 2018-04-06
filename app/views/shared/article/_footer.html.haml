@@ -1,0 +1,4 @@
+- if local_assigns[:collections] && collections.any?
+  %footer
+    %h2= t('.up_to')
+    = render partial: "shared/delimited_links", locals: { links: collections }
