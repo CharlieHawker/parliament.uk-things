@@ -62,7 +62,7 @@ RSpec.describe 'collections/_root_collection' do
       end
 
       it 'sanitized description will render correctly' do
-        expect(rendered).to match(/<p><strong>This<\/strong> is a description<\/p>/)
+        expect(rendered).to match(/<p><strong>This<\/strong> is a Collection description<\/p>/)
       end
     end
   end

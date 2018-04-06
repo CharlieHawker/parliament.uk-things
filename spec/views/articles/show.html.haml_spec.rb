@@ -4,6 +4,7 @@ RSpec.describe 'articles/show', vcr: true do
   let!(:article) {
     assign(:article,
       double(:article,
+        graph_id:        article_graph_id,
         title:           article_title_text,
         article_summary: '## This is a test summary.',
         article_body:    article_body_text
