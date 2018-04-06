@@ -1,26 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe 'shared/article/_delimite_collection_links' do
-  let!(:collections) {
+  let!(:collections) do
     assign(:links,
       [
         double(:collection,
           name:     collection_link_name_text1,
-          graph_id: 'xxxxxxx1'
-        ),
+          graph_id: 'xxxxxxx1'),
         double(:collection,
           name:     collection_link_name_text2,
-          graph_id: 'xxxxxxx2'
-        ),
-      ]
-    )
-  }
+          graph_id: 'xxxxxxx2')
+      ])
+  end
 
   let!(:collection_link_name_text1) { 'This is test collection 1.' }
   let!(:collection_link_name_text2) { 'This is test collection 2.' }
 
   before(:each) do
-    render partial: "shared/article/delimited_collection_links", locals: { links: collections }
+    render partial: 'shared/article/delimited_collection_links', locals: { links: collections }
   end
 
   context 'collection' do
@@ -44,5 +41,4 @@ RSpec.describe 'shared/article/_delimite_collection_links' do
       expect(rendered).to include("<a href=\"/collections/xxxxxxx1\">This is test collection 1.</a>\n, \n<a href=\"/collections/xxxxxxx2\">This is test collection 2.</a>")
     end
   end
-
 end

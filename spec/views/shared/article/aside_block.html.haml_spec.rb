@@ -1,43 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe 'shared/article/_aside_block' do
-  let!(:subcollection) {
+  let!(:subcollection) do
     assign(:subcollection,
       double(:subcollection,
-        name:        subcollection_name_text,
-        graph_id:    'asdf1234',
-      )
-    )
-  }
+        name:     subcollection_name_text,
+        graph_id: 'asdf1234'))
+  end
 
-  let!(:article) {
+  let!(:article) do
     assign(:article,
       double(:article,
-        article_title:   article_title_text,
-        graph_id:        'xoxoxox8'
-      )
-    )
-  }
+        article_title: article_title_text,
+        graph_id:      'xoxoxox8'))
+  end
 
-  let!(:collection_article) {
+  let!(:collection_article) do
     assign(:article,
       double(:article2,
-        article_title:    collection_article_title_text,
-        graph_id:         'gj7e0ikd'
-      )
-    )
-  }
+        article_title: collection_article_title_text,
+        graph_id:      'gj7e0ikd'))
+  end
 
-  let!(:collection) {
+  let!(:collection) do
     assign(:collection,
       double(:collection,
         graph_id:       'test1234',
         name:           collection_name_text,
         subcollections: [subcollection],
-        articles:       [article, collection_article]
-      )
-    )
-  }
+        articles:       [article, collection_article]))
+  end
 
   let!(:collection_name_text)        { 'This is a test Collection.' }
   let!(:subcollection_name_text)     { 'This is a test subcollection name' }
@@ -45,7 +37,7 @@ RSpec.describe 'shared/article/_aside_block' do
   let!(:collection_article_title_text) { 'Another article title' }
 
   before(:each) do
-    render partial: "shared/article/aside_block", locals: { title: collection.name, collection: collection, graph_id: article.graph_id }
+    render partial: 'shared/article/aside_block', locals: { title: collection.name, collection: collection, graph_id: article.graph_id }
   end
 
   context 'collection articles' do
@@ -59,7 +51,7 @@ RSpec.describe 'shared/article/_aside_block' do
       end
 
       it 'will use an active class for the list item containing the active article title' do
-        expect(rendered).to have_css("li.active .list--details", text: article_title_text)
+        expect(rendered).to have_css('li.active .list--details', text: article_title_text)
       end
     end
 

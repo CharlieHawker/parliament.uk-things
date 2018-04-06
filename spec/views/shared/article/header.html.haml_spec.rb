@@ -1,27 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe 'shared/article/_header' do
-  let!(:article) {
+  let!(:article) do
     assign(:article,
       double(:article,
         title:           article_title_text,
         article_summary: '## This is a test summary.',
         article_body:    article_body_text,
-        graph_id:        article_graph_id
-      )
-    )
-  }
+        graph_id:        article_graph_id))
+  end
 
-  let!(:subcollection) {
+  let!(:subcollection) do
     assign(:subcollection,
       double(:subcollection,
         name:     subcollection_name_text,
-        graph_id: 'asdf1234',
-      )
-    )
-  }
+        graph_id: 'asdf1234'))
+  end
 
-  let!(:collections) {
+  let!(:collections) do
     assign(:collections,
       [
         double(:collections,
@@ -31,18 +27,14 @@ RSpec.describe 'shared/article/_header' do
           subcollections: [subcollection],
           articles:       [
             double(:article,
-              article_title:   article_title_text,
-              graph_id:        article_graph_id
-            ),
+              article_title: article_title_text,
+              graph_id:      article_graph_id),
             double(:article2,
-              article_title:    collection_article_title_text,
-              graph_id:         'gj7e0ikd'
-            )
-          ]
-        )
-      ]
-    )
-  }
+              article_title: collection_article_title_text,
+              graph_id:      'gj7e0ikd')
+          ])
+      ])
+  end
 
   let!(:article_graph_id)              { 'a3d21x98' }
   let!(:article_title_text)            { 'This is a test Title.' }
@@ -53,7 +45,7 @@ RSpec.describe 'shared/article/_header' do
   let!(:parent_collection_name_text)   { 'Test Parent Collection' }
 
   before(:each) do
-    render partial: "shared/article/header", locals: { title: article.title, summary: article.article_summary, collections: collections }
+    render partial: 'shared/article/header', locals: { title: article.title, summary: article.article_summary, collections: collections }
   end
 
   context 'converted to HTML' do
@@ -90,9 +82,9 @@ RSpec.describe 'shared/article/_header' do
   end
 
   context 'when collections do not exist' do
-    let!(:collections) {
+    let!(:collections) do
       assign(:collections, [])
-    }
+    end
     it "will not render 'in' text" do
       expect(rendered).not_to match(/In/)
     end

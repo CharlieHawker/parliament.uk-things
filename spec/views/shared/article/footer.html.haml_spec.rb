@@ -1,23 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe 'shared/article/_footer' do
-  let!(:collections) {
+  let!(:collections) do
     assign(:collections,
       [
         double(:collection,
           name:     'Collection name',
-          graph_id: 'xxxxxxx1'
-        ),
+          graph_id: 'xxxxxxx1'),
         double(:collection,
           name:     'Another collection name',
-          graph_id: 'xxxxxxx2'
-        ),
-      ]
-    )
-  }
+          graph_id: 'xxxxxxx2')
+      ])
+  end
 
   before(:each) do
-    render partial: "shared/article/footer", locals: { collections: collections }
+    render partial: 'shared/article/footer', locals: { collections: collections }
   end
 
   context 'footer' do
@@ -28,9 +25,9 @@ RSpec.describe 'shared/article/_footer' do
     end
 
     context 'when collections do not exist' do
-      let!(:collections) {
+      let!(:collections) do
         assign(:collections, [])
-      }
+      end
       it "will not render 'up to' text" do
         expect(rendered).not_to match(/Up to/)
       end
