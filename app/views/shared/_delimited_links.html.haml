@@ -1,0 +1,4 @@
+%p
+  - links.each_with_index do |link, index|
+    = link_to(sanitize(link.name), collection_path(link.graph_id))
+    = ", " if index != (links.size - 1)
