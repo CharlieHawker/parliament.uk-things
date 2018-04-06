@@ -41,11 +41,11 @@ RSpec.describe 'collections/_collection' do
     )
   }
 
-  let!(:collection_name_text) { 'This is a test Collection.' }
-  let!(:collection_description_text) { '**This** is a test description of a Collection.' }
-  let!(:subcollection_name_text) { 'This is a test subcollection name' }
-  let!(:article_title_text) { 'This is a test Title.' }
-  let!(:article_summary_text) { '**This** is an article summary' }
+  let!(:collection_name_text)        { 'This is a test Collection.' }
+  let!(:collection_description_text) { '**This** is a test extended description of a Collection.' }
+  let!(:subcollection_name_text)     { 'This is a test subcollection name' }
+  let!(:article_title_text)          { 'This is a test Title.' }
+  let!(:article_summary_text)        { '**This** is an article summary' }
 
   before(:each) do
     render partial: "collections/collection", locals: { collection: collection }
@@ -63,8 +63,8 @@ RSpec.describe 'collections/_collection' do
     end
 
     context 'sanitize' do
-      let!(:collection_name_text) { '<script>This is a test Collection name.</script>' }
-      let!(:collection_description_text) { '<script>__This__ is a Collection description</script>' }
+      let!(:collection_name_text)        { '<script>This is a test Collection name.</script>' }
+      let!(:collection_description_text) { '<script>__This__ is a Collection extended description</script>' }
 
       it 'sanitized name will render correctly' do
         expect(rendered).to match(/<h1>This is a test Collection name.<\/h1>/)
@@ -105,6 +105,31 @@ RSpec.describe 'collections/_collection' do
 
       it 'name will render correctly' do
         expect(rendered).to match(/<a href="\/collections\/asdf1234">This is a test subcollection name.<\/a>/)
+      end
+    end
+  end
+
+  context 'parent collections' do
+    context 'when they do exist' do
+      it "will render 'in' text" do
+        expect(rendered).to match(/In/)
+      end
+    end
+
+    context 'when parent collections do not exist' do
+      let!(:collection) {
+        assign(:collection,
+          double(:collection,
+            name:           collection_name_text,
+            description:    collection_description_text,
+            subcollections: [],
+            articles:       [],
+            parents:        []
+          )
+        )
+      }
+      it "will not render 'in' text" do
+        expect(rendered).not_to match(/I/)
       end
     end
   end

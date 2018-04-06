@@ -2,10 +2,11 @@
   .article--wrapper
     %article{ id: 'content', tabindex: '0' }
       %header
-        - if collection.parents.any?
-          = render partial: "collections/delimited_links", locals: { collections: collection.parents }
-
         %h1= title(sanitize(collection.name))
+
+        - if collection.parents.any?
+          = t('.in')
+          = render partial: "collections/delimited_links", locals: { collections: collection.parents }
 
       %div{ role: 'main' }
         = MarkdownHelper.markdown(collection.description)

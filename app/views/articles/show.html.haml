@@ -2,6 +2,9 @@
   .article--wrapper
     %article{ id: 'content', tabindex: '0' }
       %header
+        %h1= title(sanitize(@article.title))
+
+        -# All the collections an Article sits in
         - if @collections.any?
           = render partial: 'collections/delimited_links', locals: { collections: @collections }
 
