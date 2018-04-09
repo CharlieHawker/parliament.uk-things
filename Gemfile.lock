@@ -1,3 +1,8 @@
+PATH
+  remote: ../parliament-grom-decorators
+  specs:
+    parliament-grom-decorators (0.23.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -138,7 +143,6 @@ GEM
     parallel (1.12.1)
     parallel_tests (2.21.3)
       parallel
-    parliament-grom-decorators (0.22.2)
     parliament-ntriple (0.3.0)
       grom (~> 0.5)
     parliament-routes (0.6.1)
@@ -306,7 +310,7 @@ DEPENDENCIES
   haml
   listen (>= 3.0.5, < 3.2)
   parallel_tests
-  parliament-grom-decorators (~> 0.19)
+  parliament-grom-decorators!
   parliament-ntriple (~> 0.2)
   parliament-routes (~> 0.6)
   parliament-ruby (= 1.0.0.pre6)

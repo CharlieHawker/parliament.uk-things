@@ -23,6 +23,18 @@ RSpec.describe CollectionsController, vcr: true do
         it 'assigns @collection to the article with correct id' do
           expect(assigns(:collection).graph_id).to eq('xxxxxxx7')
         end
+
+        it 'assigns @root_collections as an array' do
+          expect(assigns(:root_collections).to be_a(Array))
+        end
+
+        it 'assigns @root_collections to be an array of Grom::Nodes' do
+          expect(assigns(:root_collections).first).to be_a(Grom::Node)
+        end
+
+        it 'assigns @root_collections to be an array of Grom::Nodes of type Collection' do
+          expect(assigns(:root_collections).map(&:type).uniq).to eq(['https://id.parliament.uk/schema/Collection'])
+        end
       end
 
       context 'when unsuccessful' do

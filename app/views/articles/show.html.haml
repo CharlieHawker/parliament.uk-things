@@ -1,4 +1,6 @@
 .container
+  - if @root_collections.any?
+    %p= render partial: 'shared/article/delimited_collection_links', locals: { links: @root_collections }
   .article--wrapper
     %article{ id: 'content', tabindex: '0' }
       = render partial: 'shared/article/header', locals: { title: @article.title, summary: @article.article_summary, collections: @collections }
